@@ -5,11 +5,11 @@ import static org.junit.Assert.assertEquals;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,7 +21,7 @@ public class GoogleKittensTest {
 	private static RemoteWebDriver driver;
 	private static WebElement targ;
 	
-	@BeforeClass
+	@BeforeAll
 	public static void setUp() {
 		System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
 		
@@ -30,18 +30,18 @@ public class GoogleKittensTest {
 		
 	}
 	
-	@AfterClass
+	@AfterAll
 	public static void cleanUp() {
 		driver.quit();
 	System.out.println("The driver has been closed!");
 	}
 	
-	@Before
+	@BeforeEach
 	public void before() {
 		System.out.println("\nTest has started!");
 	}
 	
-	@After
+	@AfterEach
 	public void after() {
 		System.out.println("\nTest has finished!");
 	}
@@ -59,6 +59,8 @@ public class GoogleKittensTest {
 		
 		String result = driver.getTitle();
 		assertEquals("kittens - Google Search", result);
+		
+		System.out.println("test1 running");
 		
 		Thread.sleep(5000);
 	}

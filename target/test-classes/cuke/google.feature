@@ -1,0 +1,40 @@
+#Author: your.email@your.domain.com
+#Keywords Summary :
+#Feature: List of scenarios.
+#Scenario: Business rule through list of steps with arguments.
+#Given: Some precondition step
+#When: Some key actions
+#Then: To observe outcomes or validation
+#And,But: To enumerate more Given,When,Then steps
+#Scenario Outline: List of steps for data-driven as an Examples and <placeholder>
+#Examples: Container for s table
+#Background: List of steps run before each of the scenarios
+#""" (Doc Strings)
+#| (Data Tables)
+#@ (Tags/Labels):To group Scenarios
+#<> (placeholder)
+#""
+## (Comments)
+#Sample Feature Definition Template
+@tag
+Feature: Google various search terms
+  I want to use this template for my feature file
+
+  @tag1
+  Scenario: Google Kitten images
+  	Given That I can access Google
+		When I search for Kittens
+		And I select the images tab
+		Then I should be able to view images of Kittens
+
+  @tag2
+  Scenario Outline: Google Puppies images
+		Given That I can access Google
+		When I search for Puppies
+		And I select the images tab
+		Then I should be able to view images of Puppies
+
+    Examples: 
+      | name  | value | status  |
+      | name1 |     5 | success |
+      | name2 |     7 | Fail    |
