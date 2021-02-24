@@ -16,25 +16,22 @@
 #""
 ## (Comments)
 #Sample Feature Definition Template
-@tag
+
 Feature: Google various search terms
   I want to use this template for my feature file
 
-  @tag1
-  Scenario: Google Kitten images
-  	Given That I can access Google
-		When I search for Kittens
-		And I select the images tab
-		Then I should be able to view images of Kittens
 
-  @tag2
-  Scenario Outline: Google Puppies images
-		Given That I can access Google
-		When I search for Puppies
+  Scenario Outline: Google Kitten images
+  	Given That I can access "<Domain>"
+		When I search for "<Animal>"
 		And I select the images tab
-		Then I should be able to view images of Puppies
+		Then I should be able to view images of "<Animal>"
+
 
     Examples: 
-      | name  | value | status  |
-      | name1 |     5 | success |
-      | name2 |     7 | Fail    |
+      | Animal		| Domain  							|
+      | Kittens 	| http://www.google.com	|
+      | Penguins 	| http://www.google.com |
+      | Lions 		| http://www.google.com |
+      | Puppies		| http://www.google.com |
+      | Fish			| http://www.google.com |

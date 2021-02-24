@@ -26,7 +26,7 @@ public class GoogleStepDef {
 	public static ChromeOptions chromeCfg() {
 		 Map<String, Object> prefs = new HashMap<String, Object>();
 		 ChromeOptions cOptions = new ChromeOptions();
-		  
+		 cOptions.addArguments("--headless");
 		 // Settings
 		 prefs.put("profile.default_content_setting_values.cookies", 2);
 		 prefs.put("network.cookie.cookieBehavior", 2);
@@ -52,15 +52,15 @@ public class GoogleStepDef {
 	
 	//Kittens
 	
-	@Given("^That I can access Google$")
-	public void that_I_can_access_Google() throws Throwable {
-		driver.get("http://www.google.com");
+	@Given("^That I can access \"([^\"]*)\"$")
+	public void that_I_can_access(String arg1) throws Throwable {
+		driver.get(arg1);
 	}
 
-	@When("^I search for Kittens$")
-	public void i_search_for_Kittens() throws Throwable {
+	@When("^I search for \"([^\"]*)\"$")
+	public void i_search_for(String arg1) throws Throwable {
 		targ = driver.findElement(By.xpath("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input"));
-		targ.sendKeys("kittens");
+		targ.sendKeys(arg1);
 		targ.submit();
 	}
 
@@ -70,25 +70,10 @@ public class GoogleStepDef {
 		targ.click();
 	}
 
-	@Then("^I should be able to view images of Kittens$")
-	public void i_should_be_able_to_view_images_of_Kittens() throws Throwable {
+	@Then("^I should be able to view images of \"([^\"]*)\"$")
+	public void i_should_be_able_to_view_images_of(String arg1) throws Throwable {
 		String result = driver.getTitle();
-		assertEquals("kittens - Google Search", result);
-	}
-	
-	//Puppies
-	
-	@When("^I search for Puppies$")
-	public void i_search_for_Puppies() throws Throwable {
-		targ = driver.findElement(By.xpath("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input"));
-		targ.sendKeys("puppies");
-		targ.submit();
-	}
-
-	@Then("^I should be able to view images of Puppies$")
-	public void i_should_be_able_to_view_images_of_Puppies() throws Throwable {
-		String result = driver.getTitle();
-		assertEquals("puppies - Google Search", result);
+		assertEquals(arg1+" - Google Search", result);
 	}
 	
 }
